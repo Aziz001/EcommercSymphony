@@ -1,0 +1,13 @@
+pay:
+    resource: "@PayBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+shop:
+    resource: "@ShopBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+

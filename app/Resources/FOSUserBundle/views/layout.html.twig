@@ -1,0 +1,16 @@
+{% block title %}{% endblock %}
+
+{% block content %}
+	<link href="{{ asset('bundles/app/bootstrap.min.css')}}" rel="stylesheet"/>
+
+	<link href="{{ asset('bundles/app/register.css')}}" rel="stylesheet"/>
+	<div class="container">
+      <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-login">
+    {% block fos_user_content %}{% endblock %}
+    	</div>
+</div>
+</div>
+</div>
+{% endblock %}

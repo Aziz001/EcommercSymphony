@@ -1,0 +1,93 @@
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>Shop</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div ng-controller="WebService">   
+<div class="single-product-area" >
+    <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row" > 
+            {#show information of products from web service:image,name,brand and price with a boucle "ng-repeat"#}                   
+                <div class="col-xs-6 col-sm-3" ng-repeat="i in products.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))" ng-controller="MaxCtrl">
+                    <div class="thumbnail" style="height: 390px;">
+                        <div class="single-shop-product">
+                            <img src="[[i.imageUrl]]" alt="">                       
+                            <h2><a href="">[[i.productName]]</a></h2>
+                            <ins>[[i.brand]]</ins> 
+                            <div class="product-carousel-price">             
+                                <ins>$ [[mini(i.price,categories2[$index].price,categories3[$index].price,categories4[$index].price)]]</ins>
+                                <del style="color:red;">$ [[maxi(i.price,categories2[$index].price,categories3[$index].price,categories4[$index].price)]]
+                                </del>
+                            </div>
+                             {#show modal containing infos about product#}
+
+                            <a  class="btn btn-primary" ng-click="showModal(i)" style=" display: block;
+   margin : auto; width:200px;background: none repeat scroll 0 0 #1bd172;border-color: #1bd172;"><i class="fa fa-link"></i> See details</a>
+                           <!--  <a class="btn btn-primary" ng-click="switchTo('/Single-product/i')">See Details</a>-->
+                            <!--call of directive ngcart-Addtocart created in ngCart.js-->           
+                            <ngcart-addtocart id="[[i.delivery]]" name="[[i.productName]]" price="[[mini(i.price,categories2[$index].price,categories3[$index].price,categories4[$index].price)]]"  photo=""  quantity="1" quantity-max="5" >Add to Cart</ngcart-addtocart> 
+
+                        </div>
+                    </div>
+                </div>        
+            </div>
+        </div>
+
+        <!--bar of pagination with ui-bootstrap and refering to angular controller service.js-->
+        <div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-pagination text-center">
+                        <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" class="pagination-sm" items-per-page="itemsPerPage"></pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+<br/><br/><br/>
+<!-- addto cart buton-->
+<script type="text/ng-template" id="template/ngCart/addtocart.html">
+    <div ng-hide="attrs.id">
+        <a class="btn btn-lg btn-primary" ng-disabled="true" ng-transclude></a>
+    </div>
+    <div ng-show="attrs.id" style="margin-top:5px;">
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span ng-show="quantityMax">
+                <select name="quantity" id="quantity" ng-model="q" ng-options=" v for v in qtyOpt"></select>
+            </span>
+                <a class="btn btn-primary" ng-click="ngCart.addItem(id, name, price, q, data, photo)" style="width:163px;"
+                ng-transclude>Add To Cart</a>
+
+
+        <div class="alert alert-warning" ng-show="inCart()">
+            This item is in your cart. <a ng-click="ngCart.removeItemById(id)" style="cursor: pointer;">Remove</a>.
+        </div>
+       
+    </div>
+</script>
+<!--fin-->
+                <!--modal content!-->
+
+<script type="text/ng-template" id="modalContent.html">
+    <div class="modal-header">
+  <h1>Product Details</h1>
+</div>
+<div  class="modal-body">
+<p>Product Name:[[name]]</p>
+<p>Category:[[category]]</p>
+<p>Brand:[[brand]]</p>
+<p>Product Material:[[material]]</p>
+<p>Details:[[details]]</p>
+</div>
+         <div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">OK</button>
+</div>
+     </script>

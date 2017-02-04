@@ -1,0 +1,114 @@
+<div class="product-big-title-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-bit-title text-center">
+                        <h2>Shopping Cart</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+    <!-- End Page title area -->
+    <div class="single-product-area">
+        <div class="zigzag-bottom"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="product-content-right">
+                            <div class="woocommerce">
+                                <!--creating ngcart-cart directive-->
+                                <ngcart-cart></ngcart-cart>
+                                <hr/>
+                                 <br/><br/><br/>
+
+                            </div>                        
+                        </div>                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script type="text/ng-template" id="template/ngCart/cart.html">
+
+    {#Message to display if the card is empty#}
+
+    <div class="alert alert-warning" role="alert" ng-show="ngCart.getTotalItems() === 0">
+         Your cart is empty
+    </div>
+
+    {#view cart to display if the cart not empty#}
+
+    <div class="table-responsive col-lg-12" ng-show="ngCart.getTotalItems() > 0">
+        <form method="post" action="#">
+            <table cellspacing="0" class="shop_table cart ngCart cart">
+                <thead>
+                    <tr>
+                        <th class="product-remove">&nbsp;</th>
+                        <th class="product-name">Product</th>
+                        <th class="product-price">Price</th>
+                        <th class="product-quantity">Quantity</th>
+                        <th class="product-subtotal">Total</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr ng-show="ngCart.getTax()">
+                        <td colspan=4>Tax ([[ngCart.getTaxRate()]]%):</td>
+                        <td>[[ngCart.getTax() | currency]]</td>
+                    </tr>
+                    <tr ng-show="ngCart.getShipping()">
+                        <td colspan=4>Shipping:</td>
+                        <td>Free Shipping</td>
+                    </tr>
+                    <tr>
+                        <td colspan=4><b>Total:</b></td>
+                        <td><b>[[ngCart.totalCost() | currency]]</b></td>
+                    </tr>
+                    <tr>
+                        <td class="actions" colspan="5">
+                    <a href="" class="btn btn-success specif">Checkout</a>
+                        </td>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr class="cart_item" ng-repeat="item in ngCart.getCart().items track by $index" >
+                        <td class="product-remove">
+                            <!--action delete-->
+                            <a title="Remove this item" class="remove" ng-click="ngCart.removeItemById(item.getId())"><b>×</b></a> 
+                        </td>
+                     
+                        <td class="product-name">
+                            <a href="single-product.html">[[item.getName()]]</a> 
+                        </td>
+                        <td class="product-price">
+                            <span class="amount">[[item.getPrice() | currency]]</span> 
+                        </td>
+                        <td class="product-quantity">
+                            <div class="quantity buttons_added">
+                                <input type="button" class="minus" value="-" ng-class="{'disabled':item.getQuantity()==1}" ng-click="item.setQuantity(-1, true)">
+                                    &nbsp;&nbsp; [[item.getQuantity() | number]]&nbsp;&nbsp;
+                                <!--<input type="number"  value="[[item.getQuantity() | number]]" >-->
+                                <input type="button" class="plus" value="+" ng-click="item.setQuantity(1, true)">
+                            </div>
+                        </td>
+                        <td class="product-subtotal">
+                            <span class="amount">[[item.getTotal() | currency]]</span> 
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </form>
+    </div>
+</script>
+<script
+$('a.specif').on('click', function(e) {
+e.preventDefault();
+var href = $(this).attr('href');
+});
+$('a.specif1').on('click', function(e) {
+e.preventDefault();
+var href = $(this).attr('href');
+});</script>

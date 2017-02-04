@@ -1,0 +1,126 @@
+<div class="product-big-title-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-bit-title text-center">
+                        <h2>Product</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+    <!-- this page shows products of category HEALTH by default!-->
+ <div class="single-product-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="single-sidebar">
+                        <h2 class="sidebar-title">Products we suggest</h2>
+                                        <!--get list of suggestions from database!-->
+
+                           {% for bes in best_products %}
+                        <div class="thubmnail-recent">
+                            <img src="{{bes.imageUrl}}" class="recent-thumb" alt="">
+                            <h2><a href=""></a>{{bes.productName}}</h2>
+                            <div class="product-sidebar-price">
+                                <ins>$ {{bes.price}}</ins> 
+                            </div>                             
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+                    
+                  
+                    
+                </div>
+                
+                <div class="col-md-8">
+
+                <!--get list of products by category from database!-->
+
+                       {% for pro in cat %}
+                    <div class="product-content-right">
+                        <div class="product-breadcroumb">
+                            <a href="">Home</a>
+                            <a href="">[[type]]</a>
+                            <a >{{pro.productName}}</a>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="product-images">
+                                        <img src="{{pro.imageUrl}}" alt="">
+                                </div>
+                                    
+                            </div>
+                            
+                            <div class="col-sm-6">
+                                <div class="product-inner">
+                                    <h2 class="product-name">{{pro.productName}}</h2>
+                                    <div class="product-inner-price">
+                                        <ins>Best price : $ {{pro.price}}</ins> 
+                                    </div>    
+                                    
+                                    <form action="" class="cart">
+                                        <div class="quantity">
+                                            <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
+                                        </div>
+                                       <ngcart-addtocart id="{{pro.id}}" name="{{pro.productName}}" price="{{pro.price}}"  photo="{{pro.imageUrl}}"> Add to Cart
+                                        </ngcart-addtocart> 
+                                    </form>   
+                                    
+                                    <div class="product-inner-category">
+                                        <p> Product Material : {{pro.productMaterial}}  </p>
+                                        <p> Brand: {{pro.brand}}</p>
+                                    </div> 
+                                    
+                                    <div role="tabpanel">
+                                        <ul class="product-tab" role="tablist">
+                                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Description</a></li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div role="tabpanel" class="tab-pane fade in active" id="home">
+                                                <h2>Product Description</h2>  
+                                                <p> {{pro.details}}</p>
+                                            </div>
+                                          
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                    </div> 
+     
+                 {% endfor %}
+                        
+                    </div> 
+     
+              
+                </div>
+            </div>
+        </div>
+    </div>
+<br/><br/><br/>
+<script type="text/ng-template" id="template/ngCart/addtocart.html">
+    <div ng-hide="attrs.id">
+        <a class="btn btn-lg btn-primary" ng-disabled="true" ng-transclude></a>
+    </div>
+    <div ng-show="attrs.id">
+        <div>
+            
+                <a class="add-to-cart-link" ng-click="ngCart.addItem(id, name, price, q, data, photo)"
+                ng-transclude>Add To Cart</a>
+
+
+        <div class="alert alert-warning" ng-show="inCart()">
+            This item is in your cart. <a ng-click="ngCart.removeItemById(id)" style="cursor: pointer;">Remove</a>.
+        </div>
+       
+    </div>
+</script>

@@ -1,0 +1,44 @@
+<link href="{{ asset('bundles/app/bootstrap.min.css')}}" rel="stylesheet"/>
+
+	<link href="{{ asset('bundles/app/register.css')}}" rel="stylesheet"/>
+	<div class="container">
+      <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-login">
+<div class="panel-heading">
+             <div class="row">
+              <div class="col-xs-6">
+                Payment
+              </div>
+            </div>
+            <hr>
+          </div>
+<div class="fos_user_user_show" style="margin-left:40px;">
+	{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input type="submit" class="btn btn-login" style="width:100px;"  value="Pay $ {{amount}}" />
+{{ form_end(form) }}
+<div class="form-group">
+                   
+                    
+     <div class="row">
+   <a onclick="goBack()"  id="register-form-link">Go back</a>
+                    </div>
+                   
+                  </div> 
+</div>
+ </div>
+</div>
+</div>
+</div>
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+
+
+
+
+
+

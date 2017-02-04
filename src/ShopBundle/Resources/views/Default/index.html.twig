@@ -1,0 +1,209 @@
+{# src/OC/PlatformBundle/Resources/views/Advert/index.html.twig #}
+{% extends "::base.html.twig" %}
+{% block title %}Shop Web{% endblock %}
+
+        {% block stylesheets %}
+         
+         <!-- Google Fonts -->
+        <link href="http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600"rel='stylesheet' type='text/css'>
+        <link href="http://fonts.googleapis.com/css?family=Raleway:400,100" rel='stylesheet' type='text/css'>
+        <link href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300" rel='stylesheet' type='text/css'>
+        <!-- Bootstrap -->
+       <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="{{asset('bundles/shop/css/bootstrap.min.css')}}"
+
+        <!-- Font Awesome -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">  
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="{{asset('bundles/shop/css/owl.carousel.css')}}">
+        <link rel="stylesheet" href="{{asset('bundles/shop/css/style.css')}}">
+        <link rel="stylesheet" href="{{asset('bundles/shop/css/responsive.css')}}">
+        <!-- Css animations  -->
+        <link href="{{asset('bundles/shop/css/animate.css')}}" rel="stylesheet"> 
+        <link href="{{asset('bundles/shop/css/main.css')}}" rel="stylesheet">
+           
+        
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        
+        {% endblock %}
+        
+    {% block body %}
+       <body ng-app="myApp">
+        <div ng-controller="MainController">
+            {#menu#}
+            {#header area#}
+            <div class="header-area">
+                <div class="menu">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <ul class="nav navbar-nav navbar-left">
+                                <li><a > <span class="glyphicon glyphicon-earphone"> 28524722</span></span></a></li>
+                                <li><a ><span class="glyphicon glyphicon-envelope"> ensi@ensi-uma.tn</span></a></li>
+                                <li><a href="#" > <span class="glyphicon glyphicon-map-marker"> Our Location</span></span></a></li>
+                                <li><a href="#" ><span class="glyphicon glyphicon-euro"> Points</span></a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="nav navbar-nav navbar-right">
+                                 <li><a href="{{path('profile')}}" ><span class="glyphicon glyphicon-edit"></span> Profile</a></li>
+                                <li><a href="{{path('register')}}" ><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                                <li><a href="{{path('login')}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end header area-->
+   
+   
+            <!-- search+cart+logo area-->
+            <div class="site-branding-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="logo" style="width:50px;height:50px;">
+                                <h1><a href="./"><img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQcnoRUnyCSmh0KlHcw7U1p33qkJqLbH7UampMD0RSzBxvyr-GH"></a></h1>
+                            </div>
+                        </div>           
+                        <div class="col-sm-5" style="padding-top:40px; position:center;">
+                            <form role="search" name="searchform" method="get">
+                                <div class="form-group">
+                                     <div class="input-group input-group-lg icon-addon addon-lg" 
+                                     ng-controller="listctrl"> 
+                                        <input type="text" placeholder="choose category..." name="" id="schbox" class="form-control input-lg" list="categorie" ng-model="categ">
+                                        <datalist id="categorie">
+                                            <option ng-repeat="i in categories | unique: 'category'" value="[[i.category]]"/>
+                                        </datalist>
+                                  <i class="icon icon-search"></i>
+                                        <span class="input-group-btn">
+ <button type="submit" class="btn btn-inverse"><span class="glyphicon glyphicon-search"></span></button>                                        </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                
+                        <div class="col-sm-4">
+                            <div class="shopping-item">
+                                <a href="">Cart - <span class="cart-amunt"><ngcart-summary></ngcart-summary></span><i class="fa fa-shopping-cart"></i></a>    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!--search+cart+logo area -->
+            <!-- menu area-->
+            <div class="mainmenu-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            </button>
+                        </div> 
+                        <div class="navbar-collapse collapse" >
+                            <ul class="nav navbar-nav">
+                                <li ng-class="{'active' : isRoute('/')}" ><a ng-click="switchTo('/')">Home</a></li>
+                                <li ng-class="{'active' : isRoute('/Shop')}"><a ng-click="switchTo('/Shop')">Shop page</a></li>
+                                <li  ng-class="{'active' : isRoute('/Single-product/Health')}"><a ng-click="switchTo('/Single-product/Health')">Single product</a></li>
+                                <li ng-class="{'active' : isRoute('/Cart')}"><a ng-click="switchTo('/Cart')">Cart</a></li>
+                                <li ng-class="{'active' : isRoute('/Checkout')}"><a ng-click="switchTo('/Checkout')">Checkout</a></li>
+                                <li ng-class="{'active' : isRoute('/Category')}"><a ng-click="switchTo('/Category')">Category</a></li>
+                            </ul>
+                        </div>  
+                    </div>
+                </div>
+            </div> 
+    <!-- End menu area -->
+
+
+            <div ng-view></div>
+
+
+<br/><br/><br/>
+     <div class="footer-top-area" >
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-6 " >
+                    <div class="footer-about-us">
+                        <h2>ENSI<span>Shop</span></h2>
+                        <p>Our Shop is located all around the world...................</p>
+                    </div>
+                </div>
+                <div class="col-md-6 " >
+                    <div class="footer-social">
+                        <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
+                        <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
+                        <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ <!-- End footer top area -->
+
+</div>
+    {% endblock %}
+
+{% block javascripts %}
+    <script src="{{asset('bundles/shop/js/angular.min.js')}}"></script>
+    <script src="{{asset('bundles/shop/js/angular-route.js')}}"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+    <script src="{{asset('bundles/shop/js/angularControllers/app.js')}}"></script>
+    <script src="{{asset('bundles/shop/js/angularControllers/ngCart.js')}}"></script>
+    <script src="{{asset('bundles/shop/js/angularControllers/autocompletion.js')}}"></script>
+    <script src="{{asset('bundles/shop/js/angularControllers/service.js')}}"></script>
+        <script src="{{asset('bundles/shop/js/angularControllers/cache.js')}}"></script>
+
+        <!-- Latest jQuery form server -->
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+     
+        <!-- jQuery sticky menu -->
+    <script src="{{asset('bundles/shop/js/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('bundles/shop/js/jquery.sticky.js')}}"></script>
+        <!-- jQuery easing -->
+    <script src="{{asset('bundles/shop/js/jquery.easing.1.3.min.js')}}"></script>
+        <!-- Main Script 
+    <script src="{{asset('bundles/shop/js/main.js')}}"></script>-->
+        <!-- Slider -->
+    <script type="text/javascript" src="{{asset('bundles/shop/js/bxslider.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('bundles/shop/js/script.slider.js')}}"></script>
+<script src="https://rawgit.com/dwmkerr/angular-modal-service/master/dst/angular-modal-service.js"></script>
+    
+
+        <!--routing partials-->
+        <script type="text/ng-template" id="home.html">
+            {% include 'ShopBundle:Default:home.html.twig'%}
+    	</script>
+        <script type="text/ng-template" id="shop.html">
+            {% include 'ShopBundle:Default:shop.html.twig'%}
+        </script>
+        <script type="text/ng-template" id="product.html">
+                   
+        {% include 'ShopBundle:Default:product.html.twig'%}
+        </script>
+        <script type="text/ng-template" id="cart.html">
+            {% include 'ShopBundle:Default:cart.html.twig'%}
+        </script>
+        <script type="text/ng-template" id="checkout.html">
+            {% include 'ShopBundle:Default:checkout.html.twig'%}
+        </script>
+        <script type="text/ng-template" id="category.html">
+            {% include 'ShopBundle:Default:categories.html.twig'%}
+        </script>
+        <script type="text/ng-template" id="template/ngCart/summary.html">
+    
+           [[ ngCart.getTotalItems() ]]
+            <ng-pluralize count="ngCart.getTotalItems()" when="{1: 'item', 'other':'items'}"></ng-pluralize>
+            [[ngCart.totalCost() | currency ]]
+        
+</script>
+
+{% endblock %}
+
+    

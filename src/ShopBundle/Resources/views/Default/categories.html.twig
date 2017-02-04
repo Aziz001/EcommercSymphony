@@ -1,0 +1,43 @@
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>Categories</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div >   
+<div class="single-product-area"  >
+    <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row" > 
+                <!--get list of categories from database!-->
+                 {% for c in categories%}  
+                <div class="col-xs-6 col-sm-3" >
+                    <div class="thumbnail" style="height: 280px;">
+                        <div class="single-shop-product">
+                            <img src="https://www.colourbox.com/preview/3277422-empty-shopping-cart-isolated-on-white-background.jpg" alt="">                       
+                          <h2 ng-class="{'active' : isRoute('/Single-product/100')}"><a ng-click="switchTo('/Single-product/{{c}}')" >{{c}}</a></h2>
+                                              
+
+
+                        </div>
+                    </div>
+                </div>  
+             {% endfor %}                   
+      
+            </div>
+        </div>
+    </div> 
+<div>  
+                 
+      
+            </div>
+        </div>
+    </div> 
+   
+
+<br/><br/><br/>

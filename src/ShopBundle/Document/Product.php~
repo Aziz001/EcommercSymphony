@@ -1,0 +1,55 @@
+<?php
+namespace ShopBundle\Document;
+
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+
+/**
+ * @MongoDB\Document
+ */
+class Product
+{
+    /**
+     * @MongoDB\Id
+     */
+    protected $id;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $productName;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $category;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $brand;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $productMaterial;
+    
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $imageUrl;
+    
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $delivery;
+    
+    /**
+     * @MongoDB\Field(type="text")
+     */
+    protected $details;
+
+    /**
+     * @MongoDB\Field(type="Collection ")
+     */
+    protected $price=array();
+}

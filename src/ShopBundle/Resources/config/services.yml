@@ -1,0 +1,5 @@
+
+services:
+    setNewReference:
+      class: Shopbundle\Ressources\Services\getReference
+      arguments: [@security.context]
